@@ -31,10 +31,11 @@ const add = (numStrs) => {
   // Split the input by comma and newline charater to get the numbers as an array
   const numberArray = numStrs.split(regex);
 
-  // Parse the string values to numbers and filter only the numbers
+  // Parse the string values to numbers and filter only the numbers which are smaller than 1000
   const parsedNumberArray = numberArray
   .map((num) => parseInt(num))
-  .filter((num) => Number.isInteger(num));
+  .filter((num) => Number.isInteger(num))
+  .filter((num) => num <= 1000);
 
   // Find negative numbers if any
   const negativeNumbers = parsedNumberArray.filter((num) => num < 0);
