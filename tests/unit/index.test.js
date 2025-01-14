@@ -53,3 +53,12 @@ describe('When an expected input is received', () => {
     expect(add("\n1")).toBe(1);
   });
 });
+
+describe('When delimiter is provided explicitly', () => {
+
+  it('should return the sum when the input has one or more numbers separated by a value other than comma', () => {
+    expect(add("//;\n1;")).toBe(1);
+    expect(add("//;\n1;-2")).toBe(-1);
+    expect(add("//\\n\\")).toBe(0);
+  });
+});
