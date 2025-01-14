@@ -41,5 +41,15 @@ describe('When an expected input is received', () => {
     expect(add("1,1,1290,-1290")).toBe(2);
     expect(add("0,1,1211")).toBe(1212);
     expect(add("-1,-1,2")).toBe(0);
+    expect(add(",,")).toBe(0);
+  });
+
+  it('should sucessfully calculate the sum when the input contains newline character', () => {
+    expect(add("1\n1")).toBe(2);
+    expect(add("1\n")).toBe(1);
+    expect(add("1\n1,1")).toBe(3);
+    expect(add("1\n1\n1,1\n")).toBe(4);
+    expect(add("\n")).toBe(0);
+    expect(add("\n1")).toBe(1);
   });
 });

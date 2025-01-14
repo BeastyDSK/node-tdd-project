@@ -12,10 +12,8 @@ const add = (numStrs) => {
     return 0;
   }
 
-  // Handle two numbers in a comma sep string
-
-  // Split the input by comma to get the numbers as an array
-  const numberArray = numStrs.split(',');
+  // Split the input by comma and newline charater to get the numbers as an array
+  const numberArray = numStrs.split(/[,\n]/g);
 
   // Parse the string values to numbers and filter only the numbers
   const parsedNumberArray = numberArray
