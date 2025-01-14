@@ -36,6 +36,13 @@ const add = (numStrs) => {
   .map((num) => parseInt(num))
   .filter((num) => Number.isInteger(num));
 
+  // Find negative numbers if any
+  const negativeNumbers = parsedNumberArray.filter((num) => num < 0);
+
+  if (negativeNumbers.length) {
+    throw new Error(`negative numbers not allowed ${negativeNumbers}`);
+  }
+
   // calculate the sum
   const sum = parsedNumberArray.reduce((prev, curr) => {
     return prev + curr;

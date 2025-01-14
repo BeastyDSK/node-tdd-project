@@ -32,15 +32,11 @@ describe('When an expected input is received', () => {
     expect(add("1,1")).toBe(2);
     expect(add("0,1")).toBe(1);
     expect(add("0,0")).toBe(0);
-    expect(add("0,-1")).toBe(-1);
-    expect(add("-2,-1")).toBe(-3);
   });
 
   it('should return the sum when the input has more than two numbers', () => {
     expect(add("1,2,1")).toBe(4);
-    expect(add("1,1,1290,-1290")).toBe(2);
     expect(add("0,1,1211")).toBe(1212);
-    expect(add("-1,-1,2")).toBe(0);
     expect(add(",,")).toBe(0);
   });
 
@@ -58,7 +54,17 @@ describe('When delimiter is provided explicitly', () => {
 
   it('should return the sum when the input has one or more numbers separated by a value other than comma', () => {
     expect(add("//;\n1;")).toBe(1);
-    expect(add("//;\n1;-2")).toBe(-1);
     expect(add("//\\n\\")).toBe(0);
+  });
+});
+
+describe('When the input contains negative numbers', () => {
+
+  it('should throw an error negative value is passed in the input', () => {
+    const errMsg = `negative numbers not allowed`;
+    expect(() => add("1,-2\n")).toThrow(`${errMsg} -2`);
+    expect(() => add("\n-1\n,")).toThrow(`${errMsg} -1`);
+    expect(() => add("-1,-4\n,-2\n")).toThrow(`${errMsg} -1,-4,-2`);
+    expect(() => add("//;\n-1;-2;-4")).toThrow(`${errMsg} -1,-2,-4`);
   });
 });
