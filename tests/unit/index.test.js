@@ -32,5 +32,14 @@ describe('When an expected input is received', () => {
     expect(add("1,1")).toBe(2);
     expect(add("0,1")).toBe(1);
     expect(add("0,0")).toBe(0);
+    expect(add("0,-1")).toBe(-1);
+    expect(add("-2,-1")).toBe(-3);
+  });
+
+  it('should return the sum when the input has more than two numbers', () => {
+    expect(add("1,2,1")).toBe(4);
+    expect(add("1,1,1290,-1290")).toBe(2);
+    expect(add("0,1,1211")).toBe(1212);
+    expect(add("-1,-1,2")).toBe(0);
   });
 });

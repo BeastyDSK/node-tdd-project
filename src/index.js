@@ -13,20 +13,22 @@ const add = (numStrs) => {
   }
 
   // Handle two numbers in a comma sep string
-  
+
   // Split the input by comma to get the numbers as an array
-  const [numOne, numTwo] = numStrs.split(',');
+  const numberArray = numStrs.split(',');
 
-  // Parse the numbers
-  const parsedNumOne = parseInt(numOne);
-  const parsedNumTwo = parseInt(numTwo);
+  // Parse the string values to numbers and filter only the numbers
+  const parsedNumberArray = numberArray
+  .map((num) => parseInt(num))
+  .filter((num) => Number.isInteger(num));
 
-  // If there is no second value return the first value
-  if (isNaN(parsedNumTwo)) {
-    return parsedNumOne;
-  }
+  // calculate the sum
+  const sum = parsedNumberArray.reduce((prev, curr) => {
+    return prev + curr;
+  }, 0);
 
-  return parsedNumOne + parsedNumTwo;
+  // Return the sum
+  return sum;
 }
 
 module.exports = {
