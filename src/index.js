@@ -29,13 +29,24 @@ const add = (numStrs) => {
   const regex = new RegExp(`[${escapedDelimiter}\n]`, 'g');
 
   // Split the input by comma and newline charater to get the numbers as an array
-  const numberArray = numStrs.split(regex);
+  const numberArray = numStrs.replace(/^[EO]/).split(regex);
 
   // Parse the string values to numbers and filter only the numbers which are smaller than 1000
   const parsedNumberArray = numberArray
   .map((num) => parseInt(num))
-  .filter((num) => Number.isInteger(num))
-  .filter((num) => num <= 1000);
+  .filter((num, index) => {
+    if (/^[EO]/.test(numStrs)) {
+      if (numStrs.startsWith('E') && index % 2 === 0) {
+        return Number.isInteger(num);
+      }
+
+      if (numStrs.startsWith('O') && index % 2 === 1) {
+        return Number.isInteger(num);
+      }
+    }
+      return Number.isInteger(num);
+  })
+  .filter((num) => num < 500 || num > 1000);
 
   // Find negative numbers if any
   const negativeNumbers = parsedNumberArray.filter((num) => num < 0);

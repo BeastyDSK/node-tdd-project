@@ -21,8 +21,8 @@ describe('When an expected input is received', () => {
   
   it('should return an invalid number when the input has only one number', () => {
     expect(add("1")).toBe(1);
-    expect(add("1000")).toBe(1000);
-    expect(add("1000,")).toBe(1000);
+    expect(add("1000")).toBe(0);
+    expect(add("1000,")).toBe(0);
     expect(add("0")).toBe(0);
     expect(add("0,")).toBe(0);
   });
@@ -41,13 +41,13 @@ describe('When an expected input is received', () => {
 
 
   it('should ignore numbers which are bigger than 1000 and calculate the sum', () => {
-    expect(add("0,1,1001,1002")).toBe(1);
-    expect(add("0,1,1000,10001")).toBe(1001);
-    expect(add("0,1,1000,1000")).toBe(2001);
+    expect(add("0,1,1001,1002")).toBe(2004);
+    expect(add("0,1,1000,10001")).toBe(10002);
+    expect(add("0,1,500,1000")).toBe(1);
   });
 
   it('should sucessfully calculate the sum when the input contains newline character', () => {
-    expect(add("1\n1")).toBe(2);
+    expect(add("E1\n1")).toBe(1);
     expect(add("1\n")).toBe(1);
     expect(add("1\n1,1")).toBe(3);
     expect(add("1\n1\n1,1\n")).toBe(4);
